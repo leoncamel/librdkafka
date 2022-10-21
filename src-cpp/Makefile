@@ -37,7 +37,7 @@ endif
 
 # Ignore previously defined library dependencies for the C library,
 # we'll get those dependencies through the C library linkage.
-LIBS := -L../src -lrdkafka
+LIBS := -L../src -lrdkafka -lpthread -lssl -lm -lsasl2 -lssl -lcrypto -lcrypto -L/opt/freeware/lib64 -lz -ldl -lpthread -lrt -latomic
 MKL_PKGCONFIG_REQUIRES_PRIVATE := rdkafka
 MKL_PKGCONFIG_REQUIRES := rdkafka
 

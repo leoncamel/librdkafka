@@ -138,7 +138,7 @@ static ssize_t rd_kafka_transport_socket_sendmsg(rd_kafka_transport_t *rktrans,
                          rktrans->rktrans_sndbuf_size);
         msg.msg_iovlen = (int)iovlen;
 
-#ifdef __sun
+#if defined(__sun) || defined(_AIX)
         /* See recvmsg() comment. Setting it here to be safe. */
         rd_socket_errno = EAGAIN;
 #endif
@@ -268,7 +268,7 @@ static ssize_t rd_kafka_transport_socket_recvmsg(rd_kafka_transport_t *rktrans,
                              rktrans->rktrans_rcvbuf_size);
         msg.msg_iovlen = (int)iovlen;
 
-#ifdef __sun
+#if defined(__sun) || defined(_AIX)
         /* SunOS doesn't seem to set errno when recvmsg() fails
          * due to no data and MSG_DONTWAIT is set. */
         rd_socket_errno = EAGAIN;

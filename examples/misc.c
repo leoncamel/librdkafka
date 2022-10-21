@@ -38,7 +38,9 @@
 
 #ifdef _WIN32
 #include "../win32/wingetopt.h"
-#else
+#elif _AIX
+#include <unistd.h>
+#else // Linux or GNU-like systems
 #include <getopt.h>
 #endif
 

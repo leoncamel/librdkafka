@@ -40,7 +40,12 @@
 #include <syslog.h>
 #include <time.h>
 #include <sys/time.h>
+#ifdef _AIX
+#include <unistd.h>
+#else
 #include <getopt.h>
+#endif
+
 
 /* Typical include path would be <librdkafka/rdkafka.h>, but this program
  * is builtin from within the librdkafka source tree and thus differs. */

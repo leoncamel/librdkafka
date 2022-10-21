@@ -64,6 +64,16 @@ static int test_getrusage(struct rusage *ru) {
 #define _tv2cpu(TV, DURATION) ((_tv2s(TV) / (DURATION)) * 100.0)
 
 
+#define timersub(tvp, uvp, vvp)                                         \
+	do {                                                            \
+	        (vvp)->tv_sec = (tvp)->tv_sec - (uvp)->tv_sec;          \
+	        (vvp)->tv_usec = (tvp)->tv_usec - (uvp)->tv_usec;       \
+	        if ((vvp)->tv_usec < 0) {                               \
+	                (vvp)->tv_sec--;                                \
+	                (vvp)->tv_usec += 1000000;                      \
+	        }                                                       \
+	} while (0)
+
 /**
  * @brief Calculate difference between \p end and \p start rusage.
  *

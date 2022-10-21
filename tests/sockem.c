@@ -40,7 +40,16 @@
 
 #include "sockem.h"
 
+#if defined(_AIX)
+#include <queue.h>
+#else
 #include <sys/queue.h>
+#endif
+
+/* AIX doesn't have MSG_DONTWAIT */
+#ifndef MSG_DONTWAIT
+#define MSG_DONTWAIT MSG_NONBLOCK
+#endif
 
 #ifdef __APPLE__
 #include <sys/time.h> /* for gettimeofday() */
